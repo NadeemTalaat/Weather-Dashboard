@@ -1,0 +1,15 @@
+#header {
+  background: linear-gradient(90deg, blue, red);
+  color: white;
+  text-align: center;
+}
+
+#day-info {
+  border: solid black 1px;
+}
+
+.forecast-card {
+  background-color: rgb(41, 46, 75);
+  margin: 5px;
+  color: white;
+}
