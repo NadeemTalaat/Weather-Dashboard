@@ -59,11 +59,14 @@ function saveSearch(searchCity) {
   localStorage.setItem(searchCity.city.name, JSON.stringify(searchCity));
 
   var searches = $("#history");
-  var list = $("<button>");
+  var city = $("<button>");
 
-  list.text(searchCity.city.name);
+  city.text(searchCity.city.name);
+  city.addClass("history-button");
 
-  searches.prepend(list);
+  searches.prepend(city);
+
+  $(".history-button").on("click", onHistoryBtnClick);
 }
 
 function onSearchBtnClick() {
@@ -78,6 +81,14 @@ function onSearchBtnClick() {
       saveSearch(result);
       setValues(result);
     });
+
+  $("#cityValue").val("");
+}
+
+function onHistoryBtnClick(target) {
+  var cityData = JSON.parse(localStorage.getItem($(this).text()));
+
+  setValues(cityData);
 }
 
 $("#search-button").on("click", onSearchBtnClick);
