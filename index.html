@@ -19,36 +19,32 @@
     <header id="header">
       <h1>Weather Dashboard</h1>
     </header>
-<main>
-    <section class="row justify-content-evenly">
+    <main>
+      <section id="test" class="row justify-content-evenly w-100">
       <!-- Search Section -->
-      <div id="search" class="col-2 px-5 py-3">
-        <h3>Search for a city</h3>
-        <div class="input-group">
-          <input type="search" class="form-control rounded" placeholder="City name here" aria-label="Search" aria-describedby="search-addon" />
-          <button id='search-button' type="button" class="btn btn-primary">Search</button>
+        <div id="search" class="col-2 px-5 py-3">
+          <h3>Search for a city</h3>
+          <div class="input-group">
+            <input id='cityValue' type="search" class="form-control rounded" placeholder="City name here" aria-label="Search" aria-describedby="search-addon" />
+
         </div>
+        <button id='search-button' type="button" class="btn btn-primary w-100">Search</button>
       </div>
 
       <!-- Information Section -->
       <section id="information" class="col-9 py-2">
         <!-- Today's information -->
         <div id="day-info" class="p-2">
-          <h3>City Name</h3>
-          <p>Temp:</p>
-          <p>Wind:</p>
-          <p>Humidity:</p>
+          <h3 id="city-name">City Name</h3>
+          <p>Temp: <span id="temp"></span></p>
+          <p>Wind: <span id="wind"></span></p>
+          <p>Humidity: <span id="humidity"></span></p>
         </div>
 
         <!-- 5-Day Forecast Section -->
-        <div id="forecast" class="py-4 p-2">
+        <div id="forecast" class="py-4 p-2 flex">
           <h4>5-Day Forceast:</h4>
           <div id="forecast-cards-container" class="row">
-            <div id="day-1" class="forecast-card col">test</div>
-            <div id="day-2" class="forecast-card col">test</div>
-            <div id="day-3" class="forecast-card col">test</div>
-            <div id="day-4" class="forecast-card col">test</div>
-            <div id="day-5" class="forecast-card col">test</div>
         </div>
         </div>
       </section>

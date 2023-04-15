@@ -9,7 +9,15 @@
 }
 
 .forecast-card {
+  display: flex;
+  flex-direction: column;
   background-color: rgb(41, 46, 75);
   margin: 5px;
   color: white;
+  min-height: 150px;
+  justify-content: space-evenly;
+}
+
+.forecast-date {
+  font-weight: bolder;
 }
