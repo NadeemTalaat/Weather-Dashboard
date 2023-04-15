@@ -23,13 +23,14 @@ function getWeather(cityLat, cityLon) {
 }
 
 function setValues(result) {
-  console.log(result);
   $("#city-name").text(
     result.city.name + " " + result.list[0].dt_txt.slice(0, 10)
   );
   $("#temp").text(result.list[0].main.temp + "°C");
   $("#wind").text(result.list[0].wind.speed + " m/s");
   $("#humidity").text(result.list[0].main.humidity + "%");
+
+  $("#forecast-cards-container").html("");
 
   for (var i = 7; i <= result.list.length; i += 8) {
     var forecast = $("<div>");
@@ -54,7 +55,18 @@ function setValues(result) {
   }
 }
 
-function onBtnClick() {
+function saveSearch(searchCity) {
+  localStorage.setItem(searchCity.city.name, JSON.stringify(searchCity));
+
+  var searches = $("#history");
+  var list = $("<button>");
+
+  list.text(searchCity.city.name);
+
+  searches.prepend(list);
+}
+
+function onSearchBtnClick() {
   getLocation($("#cityValue").val())
     .then(function (data) {
       var cityLat = data[0].lat;
@@ -63,8 +75,9 @@ function onBtnClick() {
       return getWeather(cityLat, cityLon);
     })
     .then(function (result) {
+      saveSearch(result);
       setValues(result);
     });
 }
 
-$("#search-button").on("click", onBtnClick);
+$("#search-button").on("click", onSearchBtnClick);

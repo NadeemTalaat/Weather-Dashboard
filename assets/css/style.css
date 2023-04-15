@@ -21,3 +21,16 @@
 .forecast-date {
   font-weight: bolder;
 }
+
+#history {
+  margin-top: 10px;
+}
+
+#history button {
+  width: 100%;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 3px 0;
+  background-color: rgb(226, 219, 219);
+}
