@@ -56,8 +56,6 @@ function setValues(result) {
 }
 
 function saveSearch(searchCity) {
-  localStorage.setItem(searchCity.city.name, JSON.stringify(searchCity));
-
   var searches = $("#history");
   var city = $("<button>");
 
@@ -70,7 +68,27 @@ function saveSearch(searchCity) {
 }
 
 function onSearchBtnClick() {
-  getLocation($("#cityValue").val())
+  if (!$("#cityValue").val()) {
+    alert("Please enter a city name");
+  } else {
+    getLocation($("#cityValue").val())
+      .then(function (data) {
+        var cityLat = data[0].lat;
+        var cityLon = data[0].lon;
+
+        return getWeather(cityLat, cityLon);
+      })
+      .then(function (result) {
+        saveSearch(result);
+        setValues(result);
+      });
+  }
+
+  $("#cityValue").val("");
+}
+
+function onHistoryBtnClick() {
+  getLocation($(this).text())
     .then(function (data) {
       var cityLat = data[0].lat;
       var cityLon = data[0].lon;
@@ -78,17 +96,8 @@ function onSearchBtnClick() {
       return getWeather(cityLat, cityLon);
     })
     .then(function (result) {
-      saveSearch(result);
       setValues(result);
     });
-
-  $("#cityValue").val("");
-}
-
-function onHistoryBtnClick(target) {
-  var cityData = JSON.parse(localStorage.getItem($(this).text()));
-
-  setValues(cityData);
 }
 
 $("#search-button").on("click", onSearchBtnClick);
