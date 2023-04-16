@@ -59,7 +59,7 @@ function saveSearch(searchCity) {
   var searches = $("#history");
   var city = $("<button>");
 
-  city.text(searchCity.city.name);
+  city.text(searchCity);
   city.addClass("history-button");
 
   searches.prepend(city);
@@ -68,6 +68,8 @@ function saveSearch(searchCity) {
 }
 
 function onSearchBtnClick() {
+  saveSearch($("#cityValue").val());
+
   if (!$("#cityValue").val()) {
     alert("Please enter a city name");
   } else {
@@ -79,7 +81,6 @@ function onSearchBtnClick() {
         return getWeather(cityLat, cityLon);
       })
       .then(function (result) {
-        saveSearch(result);
         setValues(result);
       });
   }
