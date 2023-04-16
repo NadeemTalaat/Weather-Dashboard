@@ -14,12 +14,13 @@
   background-color: rgb(41, 46, 75);
   margin: 5px;
   color: white;
-  min-height: 150px;
+  min-height: 200px;
   justify-content: space-evenly;
 }
 
 .forecast-date {
   font-weight: bolder;
+  width: 60%;
 }
 
 #history {
@@ -33,4 +34,21 @@
   border-radius: 5px;
   margin: 3px 0;
   background-color: rgb(226, 219, 219);
+}
+
+#city-name, .forecast-date {
+  display: inline;
+  margin-top: 0.5rem;
+;
+}
+
+#city-conditions, .forecast-icon {
+  display: inline;
+  height: 50px;
+  width: 50px;
+}
+
+#day-header {
+  display: flex;
+  align-items: center;
 }

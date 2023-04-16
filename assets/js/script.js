@@ -26,6 +26,12 @@ function setValues(result) {
   $("#city-name").text(
     result.city.name + " " + result.list[0].dt_txt.slice(0, 10)
   );
+
+  $("#city-conditions").attr({
+    src: `https://openweathermap.org/img/wn/${result.list[0].weather[0].icon}@2x.png`,
+    alt: `${result.list[0].weather[0].description}`,
+  });
+
   $("#temp").text(result.list[0].main.temp + "°C");
   $("#wind").text(result.list[0].wind.speed + " m/s");
   $("#humidity").text(result.list[0].main.humidity + "%");
@@ -38,17 +44,24 @@ function setValues(result) {
     var tempForecast = $("<div>");
     var windForecast = $("<div>");
     var humidityForecast = $("<div>");
+    var iconForecast = $("<img>");
 
     dayForecast.text(result.list[i].dt_txt.slice(0, 10));
     tempForecast.text("Temp: " + result.list[i].main.temp + "°C");
     windForecast.text("Wind: " + result.list[i].wind.speed + " m/s");
     humidityForecast.text("Humidity: " + result.list[i].main.humidity + "%");
+    iconForecast.attr({
+      src: `https://openweathermap.org/img/wn/${result.list[i].weather[0].icon}@2x.png`,
+      alt: `${result.list[i].weather[0].description}`,
+    });
 
     forecast.addClass("forecast-card col");
-    dayForecast.addClass("forecast-date m-0");
+    dayForecast.addClass("forecast-date m-2");
+    iconForecast.addClass("forecast-icon");
 
     $("#forecast-cards-container").append(forecast);
     forecast.append(dayForecast);
+    forecast.append(iconForecast);
     forecast.append(tempForecast);
     forecast.append(windForecast);
     forecast.append(humidityForecast);
