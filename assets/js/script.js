@@ -1,6 +1,6 @@
 function getLocation(cityName) {
   return fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=a67ac493f3a4c2258e0cace5348bb483&limit=2`
+    `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=a67ac493f3a4c2258e0cace5348bb483&limit=2`
   )
     .then(function (response) {
       return response.json();
