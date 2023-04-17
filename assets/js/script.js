@@ -1,3 +1,18 @@
+var pastCities = JSON.parse(localStorage.getItem("Past Cities")) || [];
+
+for (i = 0; i < pastCities.length; i++) {
+  var searches = $("#history");
+  var city = $("<button>");
+
+  if (pastCities[i]) {
+    city.text(pastCities[i]);
+    city.addClass("history-button");
+    searches.append(city);
+
+    $(".history-button").on("click", onHistoryBtnClick);
+  }
+}
+
 function getLocation(cityName) {
   return fetch(
     `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=a67ac493f3a4c2258e0cace5348bb483&limit=2`
@@ -69,6 +84,10 @@ function setValues(result) {
 }
 
 function saveSearch(searchCity) {
+  pastCities.unshift(searchCity);
+
+  localStorage.setItem("Past Cities", JSON.stringify(pastCities));
+
   var searches = $("#history");
   var city = $("<button>");
 
